@@ -1,0 +1,47 @@
+<div>
+  <form [formGroup]="taskForm" novalidate (submit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" class="form-control" formControlName="name"
+          [ngClass]="{ 'is-invalid':taskForm.controls['name'].touched && taskForm.controls.name.errors }">
+        <span class="text-danger"
+          *ngIf="(taskForm.controls['name'].touched) && taskForm.controls.name.errors?.required">
+          El campo nombre es requerido
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Prioridad:</label>
+        <select formControlName="priority" class="form-control"
+          [ngClass]="{ 'is-invalid':taskForm.controls['priority'].touched && taskForm.controls.priority.errors }">
+          <option value=""> Seleccione..</option>
+          <option *ngFor="let option of options" [value]="option">{{option}}</option>
+        </select>
+        <span class="text-danger"
+          *ngIf="(taskForm.controls['priority'].touched) && taskForm.controls.priority.errors?.required">
+          El campo prioridad es requerido
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Fecha de expiración:</label>
+        <input type="date" class="form-control" formControlName="date_expire"
+        [ngClass]="{ 'is-invalid':taskForm.controls['date_expire'].touched && taskForm.controls.date_expire.errors }"
+        >
+        <span class="text-danger"
+          *ngIf="(taskForm.controls['date_expire'].touched) && taskForm.controls.date_expire.errors?.required">
+          El campo fecha de expiracion es requerido
+        </span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" [disabled]="taskForm.invalid">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+    </div>
+  </form>
+</div>

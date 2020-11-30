@@ -1,0 +1,47 @@
+<div class="container">
+
+  <div class="row justify-content-center my-3">
+    <div class="col-12 col-sm-10 col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>
+                Email:
+              </label>
+              <input class="form-control" type="text" formControlName="email"
+                [ngClass]="{ 'is-invalid':loginForm.controls['email'].touched && loginForm.controls.email.errors }">
+              <span class="text-danger"
+                *ngIf="(loginForm.controls['email'].touched) && loginForm.controls.email.errors?.required">
+                El campo email es requerido
+              </span>
+              <span class="text-danger"
+                *ngIf="(loginForm.controls['email'].touched) && loginForm.controls.email.errors?.email">
+                El campo email debe tener un formato de correo valido
+              </span>
+            </div>
+            <div class="form-group">
+              <label>
+                Contraseña:
+              </label>
+              <input
+              class="form-control"
+              type="password"
+              formControlName="password"
+              [ngClass]="{ 'is-invalid':loginForm.controls['password'].touched && loginForm.controls.password.errors }"
+              >
+              <span class="text-danger"
+                *ngIf="(loginForm.controls['password'].touched) && loginForm.controls.password.errors?.required">
+                El contraseña es requerido
+              </span>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

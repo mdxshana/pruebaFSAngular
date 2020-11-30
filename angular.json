@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "frond"
+  "defaultProject": "frond",
+  "cli": {
+    "analytics": false
+  }
 }

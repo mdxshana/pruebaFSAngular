@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="row justify-content-center my-3">
+    <div class="col-12 col-sm-10 col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>
+                Nombre:
+              </label>
+              <input class="form-control" type="text" formControlName="nombre"
+                [ngClass]="{ 'is-invalid':registerForm.controls['nombre'].touched && registerForm.controls.nombre.errors }">
+              <span class="text-danger"
+                *ngIf="(registerForm.controls['nombre'].touched) && registerForm.controls.nombre.errors?.required">
+                El campo nombre es requerido
+              </span>
+            </div>
+            <div class="form-group">
+              <label>
+                Email:
+              </label>
+              <input class="form-control" type="text" formControlName="email"
+                [ngClass]="{ 'is-invalid':registerForm.controls['email'].touched && registerForm.controls.email.errors }">
+              <span class="text-danger"
+                *ngIf="(registerForm.controls['email'].touched) && registerForm.controls.email.errors?.required">
+                El campo email es requerido
+              </span>
+              <span class="text-danger"
+                *ngIf="(registerForm.controls['email'].touched) && registerForm.controls.email.errors?.email">
+                El campo email debe tener un formato de correo valido
+              </span>
+            </div>
+            <div class="form-group">
+              <label>
+                Contraseña:
+              </label>
+              <input class="form-control" type="password" formControlName="password"
+                [ngClass]="{ 'is-invalid':registerForm.controls['password'].touched && registerForm.controls.password.errors }">
+              <span class="text-danger"
+                *ngIf="(registerForm.controls['password'].touched) && registerForm.controls.password.errors?.required">
+                El campo contraseña es requerido
+              </span>
+              <span class="text-danger"
+                *ngIf="(registerForm.controls['password'].touched) && registerForm.controls.password.errors?.minlength">
+                El campo contraseña debe tener minimo 6 caracteres
+              </span>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid" >Registrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
